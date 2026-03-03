@@ -357,3 +357,40 @@ footer p {
         gap: 15px;
     }
 }
+
+.caja-practica {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.enlace-imagen {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+.img-tarjeta {
+    width: 100%;
+    height: 160px;
+}
+
+.img-tarjeta img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+}
+
+.info-tarjeta {
+    padding: 20px;
+    flex: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.caja-practica:hover .img-tarjeta img {
+    transform: scale(1.1);
+}
