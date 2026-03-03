@@ -1,9 +1,17 @@
+/* =========================================
+   1. VARIABLES GLOBALES Y RESETEO
+   ========================================= */
+
+/* Reseteo básico para eliminar márgenes por defecto y estabilizar el tamaño de las cajas
+   Evita que el relleno o los bordes sumen tamaño extra a los elementos */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
+/* Variables de colores y degradados para mantener la consistencia en toda la web 
+   Permite cambiar el color principal desde un solo sitio sin buscar línea por línea */
 :root {
     --recursos: #FEFEFC;
     --bg-color: #5ec280;
@@ -21,6 +29,13 @@
     --barra-skills: linear-gradient(90deg, #8d7412 0%, #ffe081 100%);
 }
 
+/* =========================================
+   2. DISEÑO GENERAL DEL DOCUMENTO
+   ========================================= */
+
+/* Configuración de la fuente de letra, centrado de la página y creación 
+   de un fondo cuadriculado que se mantiene inmóvil al hacer scroll gracias 
+   al background-attachment */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
@@ -38,6 +53,9 @@ body {
     color: var(--texto);
 }
 
+/* Tarjeta principal blanca que envuelve toda la web, aplicando bordes 
+   curvos, sombra profunda y ocultando cualquier elemento que sobresalga de ella
+   gracias al overflow */
 .contenedorPrincipal {
     background-color: var(--recursos);
     width: 100%;
@@ -49,12 +67,18 @@ body {
     overflow: hidden;
 }
 
+/* =========================================
+   3. HEADER Y PERFIL (COLUMNA IZQUIERDA)
+   ========================================= */
+
+/* Fija el tamaño de la columna izquierda a 300px y le aplica un fondo degradado */
 header {
     flex: 0 0 300px; 
     background: linear-gradient(180deg, var(--izq-bg-start) 0%, var(--izq-bg-end) 100%);
     display: flex;
 }
 
+/* Centra vertical y horizontalmente la foto, los textos y los botones del perfil */
 .zonaIzquierda {
     width: 100%;
     padding: 40px 30px;
@@ -64,11 +88,12 @@ header {
     text-align: center;
 }
 
+/* Crea un marco circular blanco con sombra para contener la fotografía */
 .contImgPerfil {
     width: 150px;
     height: 150px;
     background-color: white;
-    border-radius: 50%;
+    border-radius: 50%; 
     box-shadow: 0 4px 10px var(--sombra-suave);
     margin-bottom: 20px;
     display: flex;
@@ -77,33 +102,40 @@ header {
     overflow: hidden;
 }
 
+/* Ajusta la fotografía para que llene su marco circular realizando un zoom 
+   automático en lugar de deformar o aplastar la imagen */
 .imgPerfil {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+/* Estilo del título principal */
 h1 {
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 5px;
 }
 
+/* Estilo del texto secundario */
 .subtitulo {
     font-size: 0.9rem;
     color: var(--subtexto);
     margin-bottom: 40px;
 }
 
+/* Organiza los botones de contacto en una lista vertical con espacio entre ellos */
 .botonesContacto {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 15px; 
 }
 
+/* Diseño base de los botones: elimina el subrayado, aplica colores, 
+   redondea las esquinas y prepara una transición suave para las animaciones */
 .boton {
-    text-decoration: none;
+    text-decoration: none; 
     background-color: var(--recursos);
     color: var(--titulos);
     padding: 12px;
@@ -114,32 +146,41 @@ h1 {
     font-size: 0.9rem;
 }
 
+/* Efecto de elevación e incremento de sombra al pasar el ratón por los botones */
 .boton:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 10px var(--sombra-suave);
     color: var(--hover-color);
 }
 
+/* =========================================
+   4. MAIN (COLUMNA DERECHA)
+   ========================================= */
+
+/* Área derecha que absorbe todo el espacio sobrante que deja la columna izquierda */
 .contenido {
     flex: 1;
     padding: 40px 50px;
     background-color: var(--recursos);
 }
 
+/* Añade separación inferior entre los grandes bloques de contenido */
 .secciones {
     margin-bottom: 40px;
 }
 
+/* Diseño de los encabezados de cada sección, alineando el texto con su adorno visual */
 .tituloSeccion {
     font-size: 1.3rem;
     color: var(--titulos);
     margin-bottom: 20px;
     display: flex;
-    align-items: center;
+    align-items: center; 
 }
 
+/* Genera una pequeña barra vertical de color que acompaña a los títulos de sección */
 .tituloSeccion::before {
-    content: '';
+    content: ''; 
     display: inline-block;
     width: 4px;
     height: 20px;
@@ -148,62 +189,136 @@ h1 {
     border-radius: 2px;
 }
 
+/* Estilo de los párrafos largos, aumentando el interlineado para facilitar la lectura */
 .textoSeccion {
     font-size: 0.91rem;
     color: var(--texto);
-    line-height: 1.5;
+    line-height: 1.5; 
 }
 
+/* ====================================================
+   5. TARJETAS DE INFORMACIÓN (FORMACIÓN/EXPERIENCIA)
+   ==================================================== */
+
+/* Rejilla flexible que organiza las tarjetas en columnas, permitiendo 
+   que salten a una nueva fila si no caben en la pantalla con el wrap */
 .contenedorCaja {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
 
+/* Diseño individual de las tarjetas de información: color, bordes redondeados, 
+   tamaño mínimo para no aplastarse y ocultación de la decoración sobrante gracias 
+   otra vez al overflow */
 .caja {
     background-color: var(--caja-bg);
     border-radius: 12px;
     padding: 20px;
     flex: 1 1 calc(50% - 20px);
-    min-width: 250px;
+    min-width: 250px; 
     position: relative;
-    overflow: hidden;
+    overflow: hidden; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Efecto 3D de desplazamiento y sombra al pasar el ratón */
 .caja:hover {
     transform: translate(-6px, -6px); 
-    box-shadow: 6px 6px 0px var(--titulos);
+    box-shadow: 6px 6px 0px var(--titulos); 
 }
 
+/* Eleva los textos de las tarjetas para evitar que queden ocultos tras 
+   los elementos decorativos del fondo */
+.caja h3, .fechaCaja, .subtCaja {
+    position: relative;
+    z-index: 2;
+}
+
+/* Título destacado dentro de cada tarjeta */
 .caja h3 {
     font-size: 1rem;
     margin-bottom: 8px;
     color: var(--texto);
 }
 
+/* Textos secundarios de la tarjeta con un color más suave */
 .fechaCaja, .subtCaja {
     font-size: 0.9rem;
     color: var(--subtexto);
 }
 
+/* Círculo decorativo posicionado en la esquina inferior derecha de las tarjetas */
 .decoCaja {
     position: absolute;
-    bottom: -20px;
+    bottom: -20px; 
     right: -20px;
     width: 55px;
     height: 55px;
     border: 6px solid var(--deco-caja); 
     border-radius: 50%;
-    z-index: 0;
+    z-index: 0; 
     transition: all 0.4s ease;
 }
 
+/* Aumenta el tamaño y cambia el color del círculo decorativo al interactuar con la tarjeta */
 .caja:hover .decoCaja {
     transform: scale(1.2) translate(-4px, -4px);
     border-color: var(--hover-color);
 }
 
+/* ==============================
+   6. TARJETAS DE PRÁCTICAS
+   ============================== */
+
+/* Elimina el relleno interno de la tarjeta para que la imagen pueda tocar los bordes */
+.caja-practica {
+    padding: 0; 
+    display: flex;
+    flex-direction: column; 
+}
+
+/* Contenedor de la imagen que redondea exclusivamente sus esquinas superiores */
+.enlace-imagen {
+    display: block;
+    width: 100%;
+    overflow: hidden; 
+    border-radius: 12px 12px 0 0; 
+}
+
+/* Establece una altura fija y uniforme para todas las imágenes */
+.img-tarjeta {
+    width: 100%;
+    height: 160px; 
+}
+
+/* Recorta y ajusta la captura de pantalla para que encaje perfectamente sin distorsionarse */
+.img-tarjeta img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block; 
+}
+
+/* Devuelve el margen interior exclusivamente a la zona de texto del proyecto */
+.info-tarjeta {
+    padding: 20px; 
+    flex: 1; 
+    position: relative;
+    z-index: 2;
+}
+
+/* Aplica un suave efecto de zoom a la imagen superior al pasar el ratón por la tarjeta */
+.caja-practica:hover .img-tarjeta img {
+    transform: scale(1.1); 
+}
+
+/* =========================================
+   7. BARRAS DE PROGRESO
+   ========================================= */
+
+/* Contenedor flexible que agrupa y distribuye las barras de progreso */
 .contenedorSkills {
     display: flex;
     flex-direction: row;
@@ -211,15 +326,18 @@ h1 {
     gap: 20px;
 }
 
+/* Agrupación invisible que permite organizar las barras en el diseño de rejilla */
 .filaSkills {
     display: contents;
 }
 
+/* Fija el tamaño de cada contenedor de progreso para que ocupe la mitad del ancho */
 .itemSkill {
     flex: 1 1 calc(50% - 20px);
     min-width: 250px;
 }
 
+/* Estilo del texto */
 .nombreSkill {
     display: block;
     font-size: 0.90rem;
@@ -228,14 +346,17 @@ h1 {
     color: var(--texto);
 }
 
+/* Línea gris estática por donde avanzará la barra de color. Si el color 
+   sobresale, se corta gracias al overflow hidden */
 .barraProgreso {
     width: 100%;
     height: 8px;
     background-color: var(--sombra-barra);
     border-radius: 4px;
-    overflow: hidden;
+    overflow: hidden; 
 }
 
+/* Barra de color que se llena gradualmente gracias a la animación */
 .progreso {
     height: 100%;
     background: var(--barra-skills);
@@ -245,12 +366,12 @@ h1 {
     width: 0;
 }
 
+/* Define el punto de partida (0%) para la animación */
 @keyframes llenarBarra {
-    from {
-        width: 0;
-    }
+    from { width: 0; } 
 }
 
+/* Asigna el porcentaje final específico en el que se detendrá cada barra */
 .progreso.html { width: 75%; }
 .progreso.java { width: 50%; }
 .progreso.photoshop { width: 95%; }
@@ -258,6 +379,11 @@ h1 {
 .progreso.premier { width: 85%; }
 .progreso.office { width: 80%; }
 
+/* =========================================
+   8. ETIQUETAS DE HABILIDADES
+   ========================================= */
+
+/* Agrupa las etiquetas permitiendo que salten de línea si no caben en la pantalla */
 .contenedorHabilidades {
     width: 100%;
     display: flex;
@@ -265,11 +391,13 @@ h1 {
     gap: 14px;
 }
 
+/* Diseño en forma de píldora redondeada con degradado. Se estiran ligeramente 
+   para rellenar los huecos vacíos de la fila */
 .habilidades {
     background: linear-gradient(90deg, var(--izq-bg-start) 60%, var(--izq-bg-end) 100%);
     color: var(--texto);
     padding: 10px 25px;
-    border-radius: 30px;
+    border-radius: 30px; 
     font-size: 0.9rem;
     text-align: center;
     flex: 1 1 auto;
@@ -277,11 +405,17 @@ h1 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Efecto de desplazamiento y sombra al interactuar con la caja */
 .habilidades:hover {
     transform: translate(-6px, -6px); 
     box-shadow: 4px 4px 0px var(--titulos);
 }
 
+/* =========================================
+   9. FOOTER
+   ========================================= */
+
+/* Tarjeta inferior que distribuye el texto a la izquierda y los enlaces a la derecha */
 footer {
     background-color: var(--recursos);
     width: 100%;
@@ -298,17 +432,20 @@ footer {
     gap: 20px;
 }
 
+/* Estilo del texto de copyright */
 footer p {
     font-size: 1rem;
     color: var(--subtexto);
     margin: 0;
 }
 
+/* Agrupa y separa los enlaces de redes sociales del pie de página */
 .enlacesFooter {
     display: flex;
     gap: 15px;
 }
 
+/* Elimina el subrayado y prepara la transición de color de los enlaces */
 .enlacesFooter a {
     text-decoration: none;
     color: var(--texto);
@@ -316,81 +453,48 @@ footer p {
     transition: color 0.2s ease;
 }
 
+/* Cambia el color de los enlaces a naranja al pasar el ratón */
 .enlacesFooter a:hover {
     color: var(--hover-color);
 }
 
 /* =========================================
-   ESTILOS PARA MÓVIL (Media Query)
+   10. ADAPTACIÓN PARA DISPOSITIVOS MÓVILES
    ========================================= */
+
+/* Adapta el diseño completo exclusivamente para pantallas pequeñas (móviles y tablets) */
 @media (max-width: 768px) {
     
+    /* Cambia la distribución de dos columnas a una sola (de arriba a abajo) */
     .contenedorPrincipal {
-        flex-direction: column;
+        flex-direction: column; 
     }
 
+    /* Permite que la cabecera del perfil ocupe todo el ancho de la pantalla */
     header {
-        flex: none;
-        width: 100%;
+        flex: none; 
+        width: 100%; 
     }
 
-    .zonaIzquierda {
-        padding: 30px 20px;
+    /* Reduce los márgenes laterales para aprovechar mejor el espacio pequeño */
+    .zonaIzquierda { padding: 30px 20px; }
+    .contenido { padding: 30px 20px; }
+
+    /* Obliga a todas las tarjetas a ocupar el ancho completo de la pantalla */
+    .caja { 
+        flex: 1 1 100%; 
     }
 
-    .contenido {
-        padding: 30px 20px;
-    }
-
-    .caja {
-        flex: 1 1 100%;
-    }
-
+    /* Apila las barras de progreso en una sola columna vertical */
     .filaSkills {
         flex-direction: column;
         gap: 20px;
     }
     
+    /* Centra el texto del copyright y coloca los enlaces justo debajo */
     footer {
         flex-direction: column;
         text-align: center;
         gap: 15px;
     }
-}
-
-.caja-practica {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.enlace-imagen {
-    display: block;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 12px 12px 0 0;
-}
-
-.img-tarjeta {
-    width: 100%;
-    height: 160px;
-}
-
-.img-tarjeta img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-    display: block;
-}
-
-.info-tarjeta {
-    padding: 20px;
-    flex: 1;
-    position: relative;
-    z-index: 2;
-}
-
-.caja-practica:hover .img-tarjeta img {
-    transform: scale(1.1);
 }
